@@ -1,6 +1,6 @@
 ---
 title: Improving forecasts via subspace projections
-author: George Athanasopoulos 
+author: George Athanasopoulos \newline CRETE2025, Tinos, Greece
 #date: 7 July 2025
 toc: true
 format:
@@ -557,86 +557,11 @@ A probability triple $(\mathfrak{s}, \mathscr{F}_{\mathfrak{s}}, \breve{\nu})$ i
   \end{alertblock}
 \end{textblock}
 
-<!-- ## Example: Accident & Emergency Services Demand -->
-
-<!-- Weekly A\&E demand data: 7 November 2010 to 7 June 2015.\fontsize{10}{11}\sf -->
-
-<!-- \begin{tabular}{l} -->
-<!--   \toprule -->
-<!--   Type 1 Departments --- Major A\&E                               \\ -->
-<!--   Type 2 Departments --- Single Specialty                         \\ -->
-<!--   Type 3 Departments --- Other A\&E/Minor Injury Unit             \\ -->
-<!--   Total Attendances                                               \\ -->
-<!--   Type 1 Departments --- Major A\&E $>$ 2 hours                   \\ -->
-<!--   Type 2 Departments --- Single Specialty $>$ 2 hours             \\ -->
-<!--   Type 3 Departments --- Other A\&E/Minor Injury Unit $>$ 2 hours \\ -->
-<!--   Total Attendances $>$ 2 hours                                   \\ -->
-<!--   Emergency Admissions via Type 1 A\&E                            \\ -->
-<!--   Total Emergency Admissions via A\&E                             \\ -->
-<!--   Other Emergency Admissions (i.e not via A\&E)                   \\ -->
-<!--   Total Emergency Admissions                                      \\ -->
-<!--   Number of patients spending $>$ 2 hours from decision to admit to admission\\ -->
-<!--   \bottomrule -->
-<!-- \end{tabular} -->
-
-
-<!-- ## Example: Forecasting A\&E admissions -->
-
-<!-- \structure{Objectives:} -->
-
-<!-- - 1 year ahead (staff training); -->
-<!-- - 3 months ahead (staff planning and procurement); -->
-<!-- - 4 weeks ahead (staffing schedules); -->
-<!-- - 1 week (calibrate existing plans). -->
-
-
-<!-- \structure{Data:} -->
-
-<!-- - `ARIMA()` base forecasts. -->
-<!-- - Test set: last 52 weeks. Rolling origin evaluation. -->
-
 
 ## Example: Accident & emergency services demand
 
 
 \placefig{2}{2.2}{width=0.7\paperwidth}{AEexample.pdf}
-<!-- \placefig{0.8}{2.2}{height=6.2cm, width=13.5cm}{AEexample.pdf}
-
-<!-- \placefig{0.1}{1.1}{width=15.8cm, height=7.8cm}{tourism1}
-
-\begin{textblock}{10}(3,1)\fontsize{12}{12}\sf
-  \begin{block}{}\centering
-    Total emergency admissions via A\&E
-  \end{block}
-\end{textblock}
-
-
-<!-- ## Example: Accident & emergency services demand -->
-
-<!-- Test set: last 52 weeks -->
-
-<!-- \alert{MASE comparison} (ARIMA models) -->
-
-<!-- ```{r} -->
-<!-- #| label: ae-table -->
-
-<!-- tibble::tribble( -->
-<!--   ~`Aggregation Level`, ~h, ~Base, ~Reconciled, ~Change, -->
-<!--   "Annual", "1"    , 3.4, 1.9, -42.9, -->
-<!--   "Weekly", "1--52", 2.0, 1.9, -5.0, -->
-<!--   "Weekly", "13"   , 2.3, 1.9, -16.2, -->
-<!--   "Weekly", "4"    , 1.9, 1.5, -18.6, -->
-<!--   "Weekly", "1"    , 1.6, 1.3, -17.2) |> -->
-<!--   kable(booktabs = TRUE, align = "lrrrr",format = "latex", -->
-<!--     escape = FALSE, -->
-<!--     linesep = "")   -->
-
-
-<!-- #   dplyr::mutate(Change = paste0(sprintf("%.1f", Change),"%")) |> -->
-<!-- #   column_spec(5, bold = TRUE) -->
-<!-- ``` -->
-
-
 
 ## Temporal Hierarchical Forecasting - THieF 
 
@@ -756,14 +681,6 @@ do not have linear (or non-linear) constraints.
 * Produce forecasts for original series and components $\textcolor{blue}{\hat{\bm{y}}_{t+h}}$ and  $\textcolor{blue}{\hat{\bm{c}}_{t+h}}$.  \pause
 * Project forecasts onto the $\mathbb{R}^m$ coherent subspace using MinT, resulting in $\textcolor{red}{\tilde{\bm{y}}_{t+h}}$.
 
-<!-- ## Geometry of FLAP  -->
-
-
-<!-- \only<1>{\includegraphics[page=1, width=11cm]{figs/FLAP_geometry.pdf}} -->
-<!-- \only<2>{\includegraphics[page=2, width=11cm]{figs/FLAP_geometry.pdf}} -->
-<!-- \only<3>{\includegraphics[page=3, width=11cm]{figs/FLAP_geometry.pdf}} -->
-<!-- \only<4>{\includegraphics[page=4, width=11cm]{figs/FLAP_geometry.pdf}} -->
-<!-- \only<5>{\includegraphics[page=5, width=11cm]{figs/FLAP_geometry.pdf}} -->
 
 ## Geometry of FLAP
 
@@ -774,49 +691,9 @@ do not have linear (or non-linear) constraints.
 \only<5>{\placefig{2.3}{1.9}{trim = 0 0 0 20, page=5, height=8.4cm}{figs/FLAP_geometry.pdf}}
 
 
-<!-- \input{figs/FLAP_geometry.tex} -->
-<!-- \includegraphics{path/to/your/tikz_picture.pdf} -->
-
-
-<!-- ## FLAP Projection -->
-
-<!-- \vspace*{-0.6cm} -->
-
-<!-- $$ -->
-<!-- \bm{z}_t = \begin{bmatrix} \bm{y}_t\\ \bm{c}_t \end{bmatrix}, -->
-<!-- \qquad \textcolor{blue}{\hat{\bm{z}}_{t+h}} = \begin{bmatrix} \textcolor{blue}{\hat{\bm{y}}_{t+h}}\\ \textcolor{blue}{\hat{\bm{c}}_{t+h}}\end{bmatrix},  -->
-<!-- \qquad\textcolor{red}{\tilde{\bm{z}}_{t+h}} = \bm{M} \textcolor{blue}{\hat{\bm{z}}_{t+h}} -->
-<!-- $$ -->
-
-<!-- where $\bm{M}$ is a projection matrix onto the $\mathbb{R}^m$ coherent subspace -->
-<!-- \vspace*{-0.4cm} -->
-
-<!-- $$ -->
-<!-- \begin{aligned} -->
-<!-- \bm{M} &= \bm{I}_{m+p} - \bm{W}_h\bm{C}'(\bm{C}\bm{W}_h\bm{C}')^{-1}\bm{C}\\ -->
-<!-- \bm{C} &= \big[- \bm{\Phi} ~~~ \bm{I}_{p}\big]\\ -->
-<!-- \bm{W}_h &= \Var(\bm{z}_{t+h} - \textcolor{blue}{\hat{\bm{z}}_{t+h}}) -->
-<!-- \end{aligned} -->
-<!-- $$ -->
-<!-- \pause -->
-<!-- \begin{block}{} -->
-<!-- \vspace*{-0.3cm} -->
-<!-- $$ -->
-<!-- \textcolor{red}{\tilde{\bm{y}}_{t+h}} =  -->
-<!-- \bm{G}\textcolor{blue}{\hat{\bm{z}}_{t+h}} = \bm{J}\bm{M}\textcolor{blue}{\hat{\bm{z}}_{t+h}} -->
-<!-- $$\vspace*{-0.8cm} -->
-<!-- \end{block} -->
-
-<!-- \vspace*{-1cm} -->
-<!-- $$ -->
-<!-- \bm{J} = \big[\bm{I}_m ~~~ \bm{O}_{m\times p}\big] -->
-<!-- $$ -->
-
 ## Key results based on MinT
 
 1. The forecast error variance is **reduced** with FLAP 
-<!--    - $\Var(\bm{z}_{t+h} - \textcolor{blue}{\hat{\bm{z}}_{t+h}}) -\Var(\bm{z}_{t+h} - \textcolor{red}{\tilde{\bm{z}}_{t+h}})$ -->
-<!-- is __positive semi-definite__. \pause -->
    - $\Var(\bm{y}_{t+h} - \textcolor{blue}{\hat{\bm{y}}_{t+h}}) -\Var(\bm{y}_{t+h} - \textcolor{red}{\tilde{\bm{y}}_{t+h}})$
 is also __positive semi-definite__. \pause
 
@@ -836,60 +713,6 @@ is also __positive semi-definite__. \pause
 * The quality of covariance matrix estimates deteriorate with higher dimension.\pause
 * However for finite dimension, the benefit of FLAP outweighs errors in estimating covariance matrix.
 
-<!-- ## Simulation -->
-
-<!-- * Data generating process: VAR($3$) with $m=70$ variables -->
-
-<!-- * Innovations $\sim N(0,\bm{I}_m)$  -->
-
-<!-- * Sample size: $T=400$ -->
-
-<!-- * Number of repeated samples: $220$ -->
-
-<!-- * Base forecasts: -->
-
-<!--   * ARIMA models using AICc (`auto.arima()` in `forecast` package). -->
-<!--   * DFM structure using BIC (different model for each horizon). -->
-
-
-<!-- ## Simulation -->
-
-<!-- ```{r simulation} -->
-<!-- m <- 70 -->
-<!-- mse <- qs::qread(here::here("output/simulation_mse.qs")) |> -->
-<!--   as_tibble() |> -->
-<!--   filter(model %in% c("arima", "dfm", "var", "true"), -->
-<!--          Phi %in% c("PCA_normal") | is.na(Phi), -->
-<!--          h %in% c(1, 6)) |> -->
-<!--   mutate( -->
-<!--     Component = case_when( -->
-<!--       !proj ~ "No projection", -->
-<!--       proj & Phi == "PCA_normal" ~ "PCA + Normal", -->
-<!--       TRUE ~ "Other" -->
-<!--     ) -->
-<!--   ) -->
-<!-- mse |> -->
-<!--   ggplot(aes(x = p, y = value, colour = model, linetype = Component)) + -->
-<!--   geom_vline(xintercept = m) + -->
-<!--   geom_line() + -->
-<!--   geom_hline(data = filter(mse, !proj), -->
-<!--              aes(yintercept = value, colour = model, linetype = Component)) + -->
-<!--   facet_grid(rows = "h", scales = "free", labeller = label_both) + -->
-<!--   ylab("MSE") + -->
-<!--   scale_color_manual( -->
-<!--     name = "Model", -->
-<!--     values = cb_palette_grey[c(7, 6, 4, 2)], -->
-<!--     labels = c( -->
-<!--       "arima" = "ARIMA", -->
-<!--       "dfm" = "DFM", -->
-<!--       "true" = "VAR - DGP", -->
-<!--       "var" = "VAR - Est.")) + -->
-<!--   scale_linetype_manual( -->
-<!--     name = "Component", -->
-<!--     values = c("dashed", "solid"), -->
-<!--     labels = c("No projection", "PCA + Normal") -->
-<!--   ) -->
-<!-- ``` -->
 
 ## Monthly Australian regional tourism
 
@@ -1061,44 +884,9 @@ remotes::install_github("FinYang/flap")
 ## Links
 
 \centering
-![](jobad_cr.png){width=40%} \hspace{1cm} ![](keynoteqr.png){width=40%}
+![](jobad_cr.png){width=40%} \hspace{1cm} ![](github.png){width=38%}
 
 Postdoc opportunity \hspace{2.5cm} Link to slides \hspace{0.5cm}
-
-
-<!-- ## Software -->
-<!-- \fontsize{10}{12}\sf\vspace*{0.3cm}\tabcolsep=0.12cm -->
-
-<!-- \hspace*{-0.3cm}\begin{tabular}{@{}llP{1.4cm}cP{1.4cm}cc@{}} -->
-<!-- \toprule -->
-<!-- Package                                                                      & Language  & Cross-sectional  & Temporal    & Cross-temporal  & Probabilistic & Multivariate \\ -->
-<!-- \midrule -->
-<!-- \texttt{\href{https://pkg.earo.me/hts/}{hts}} -->
-<!--     & R         & \checkmark       &             &                 & \\ -->
-<!-- \texttt{\href{http://pkg.robjhyndman.com/thief/}{thief}} -->
-<!--     & R         &                  & \checkmark  &                 & \\ -->
-<!-- \texttt{\href{https://fable.tidyverts.org}{fable}} -->
-<!--     & R         & \checkmark       &             &                 & \checkmark\\ -->
-<!-- \texttt{\href{https://danigiro.github.io/FoReco/}{FoReco}} -->
-<!--     & R         & \checkmark       & \checkmark  & \checkmark      & \checkmark\\ -->
-<!-- \texttt{\href{https://cran.r-project.org/package=flap}{flap}} -->
-<!--     & R & & & & & \checkmark \\ -->
-<!-- \texttt{\href{https://angelpone.github.io/pyhts/}{pyhts}} -->
-<!--     & Python    & \checkmark       & \checkmark  &                 & \\ -->
-<!-- \texttt{\href{https://nixtla.github.io/hierarchicalforecast/}{hierarchicalforecast}} -->
-<!--     & Python    & \checkmark       &             &                 & \checkmark \\ -->
-<!-- \bottomrule -->
-<!-- \end{tabular} -->
-
-<!-- * `hts`, `thief`, and `FoReco` use `ts` objects -->
-<!-- * `fable` uses `tsibble` objects -->
-<!-- * `flap` uses matrices of base forecasts -->
-<!-- * `fable` has plans to implement temporal and cross-temporal reconciliation -->
-
-<!-- ## Current work -->
-
-<!-- - Optimal Forecast Reconciliation for Quantiles, with Anastasios Panagiotelis, Nam Ho-Nguyen, Hossein Alipour (almost complete). -->
-<!-- - Immutable and non-negative MinT forecasts, with Shanika Wickramasuriya and students (under development). -->
 
 ## Thank you to
 
@@ -1118,10 +906,6 @@ Postdoc opportunity \hspace{2.5cm} Link to slides \hspace{0.5cm}
 
 
 ## Other information
-
-<!-- **Slides:** -->
-
-<!-- [\color{Blue}{https://github.com/GeorgeAthana/2024-INFORMS}](https://github.com/GeorgeAthana/2024-INFORMS) -->
 
 \vspace*{0.5cm}
 
