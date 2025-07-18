@@ -426,7 +426,7 @@ $\textcolor{red}{\tilde{\bm{y}}_{T+h|T}}=\bm{SG}\textcolor{blue}{\hat{\bm{y}}_{T
 \begin{alertblock}{Minimum trace (MinT) reconciliation}
 If $\bm{SG}$ is a projection, then trace of $\textcolor{red}{\bm{V}_h}$ is minimized when $\bm{\Psi} = \textcolor{blue}{\bm{W}_h}$, so that
 \centerline{$\bm{SG} = \bS(\bS'\bm{W}_h^{-1}\bS)^{-1}\bS'\bm{W}_h^{-1}$}
-\end{alertblock}\pause
+\end{alertblock}
 \vspace*{-0.2cm}
 * MinT is $L_2$ optimal amongst linear unbiased forecasts.
 
@@ -650,7 +650,7 @@ A probability triple $(\mathfrak{s}, \mathscr{F}_{\mathfrak{s}}, \breve{\nu})$ i
 # Improving multivariate forecasts
 
 
-## FLAP (Forecast Linear Augemnted Projection)
+## FLAP (Forecast Linear Augmented Projection)
 
 Intuition:
 
@@ -721,45 +721,6 @@ is also __positive semi-definite__. \pause
 * Use expanding window time series cross-validation with $T=84$ observations in first training set, and forecast horizons $h=1,2,\dots,12$.
 
 * Estimate `ets()` models using the `forecast` package.
-
-
-## Monthly Australian regional tourism
-
-
-```{r}
-#| label: series
-#| fig-height: 5
-regions <- c("Melbourne", "Canberra", "Fraser Coast", "Central Highlands")
-
-visnights |>
-  filter(Region %in% regions) |>
-  ggplot() +
-  geom_line(aes(x = Month, y = Nights)) +
-  facet_grid("Region", scales = "free")
-```
-
-## Monthly Australian regional tourism
-
-```{r}
-#| label: components
-source(here::here("component.R"))
-visnights_wide <- visnights |>
-  pivot_wider(names_from = Region, values_from = Nights)
-col_month <- select(visnights_wide, Month)
-visnights_wide |>
-  select(-Month) |>
-  as.matrix() |>
-  component() |>
-  getElement("x") %>%
-  bind_cols(col_month, .) |>
-  pivot_longer(-Month,
-               names_to = "Component",
-               values_to = "Value") |>
-  filter(Component %in% unique(Component)[seq_len(4)]) |>
-  ggplot() +
-  geom_line(aes(x = Month, y = Value)) +
-  facet_grid("Component", scales = "free")
-```
 
 
 ## Monthly Australian regional tourism - `ets()`
